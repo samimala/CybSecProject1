@@ -13,10 +13,14 @@ import org.springframework.stereotype.Service;
 import sec.project.domain.Account;
 import sec.project.repository.AccountRepository;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
+
+    private static final Logger logger = LoggerFactory.getLogger(CustomUserDetailsService.class);
 
     @Autowired
     private AccountRepository accountRepository;
@@ -31,6 +35,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Account account=accountRepository.findByUsername(username);
         if (null==account) {
+            //logger.warn("Unknown user " + username + " tried to login");
             throw new UsernameNotFoundException("No such user: " + username);
         }
 
