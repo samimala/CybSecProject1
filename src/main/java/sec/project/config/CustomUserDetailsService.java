@@ -36,11 +36,11 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         return new org.springframework.security.core.userdetails.User(
                 username,
-                account.getUsername(),
+                account.getPassword(),
                 true,
                 true,
                 true,
                 true,
-                Arrays.asList(new SimpleGrantedAuthority("ADMIN")));
+                Arrays.asList(new SimpleGrantedAuthority(account.getAdmin()?"ADMIN":"USER")));
     }
 }
