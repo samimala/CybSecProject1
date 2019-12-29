@@ -9,6 +9,21 @@
         You can administrate users 
         <a th:href="@{/admin}">HERE</a>
        
+        <h1>Change your password using this form</h1>
 
+        <p>Enter your new password:</p>
+
+        <form action="#" th:action="@{/password}" method="POST">
+            <p>Password: <input type="password" name="password"/></p>
+            <p><input type="submit" value="Change password" /></p>
+        </form>
+
+
+        <form action="#" th:action="@{/logout}" method="POST">
+            <input type="submit" value="Logout" />
+            <input type="hidden"
+            name="${_csrf.parameterName}"
+            value="${_csrf.token}"/>
+        </form>
     </body>
 </html>
