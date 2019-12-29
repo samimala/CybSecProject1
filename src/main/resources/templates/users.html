@@ -5,9 +5,18 @@
     </head>
     <body>
         <h1>Users</h1>
-        <ul th:each="account : ${accounts}">
-            <li th:text="${account.username} + ' ' + ${account.password} + ' ' + ${account.admin}"></li>
-        </ul>
+        <table>
+            <tr>
+                <td>Username</td>
+                <td>Password</td>
+                <td>Admin</td>
+            </tr>
+            <tr th:each="account : ${accounts}">
+                <td th:text="${account.username}"></td>
+                <td th:text="${account.password}"></td> 
+                <td th:text="${account.admin}"></td>
+            </tr>
+        </table>
         <form action="#" th:action="@{/newuser}" method="POST">
             <p><label for="username">Username</label>: <input type="text" name="username" id="username"/></p>
             <p><label for="password">Password</label>: <input type="text" name="password" id="password"/></p>
