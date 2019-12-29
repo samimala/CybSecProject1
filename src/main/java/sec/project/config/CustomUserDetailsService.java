@@ -41,6 +41,6 @@ public class CustomUserDetailsService implements UserDetailsService {
                 true,
                 true,
                 true,
-                Arrays.asList(new SimpleGrantedAuthority(account.getAdmin()?"ADMIN":"USER")));
+                Arrays.asList(new SimpleGrantedAuthority(account.getAdmin()?"ROLE_ADMIN":"ROLE_USER")));
     }
 }
