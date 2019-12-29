@@ -1,12 +1,12 @@
 package sec.project.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.Index;
+import javax.persistence.Column;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
 public class Account extends AbstractPersistable<Long> {
-    @Index(name = "IDX_USERNAME")
-    @Column(nullable = false, unique = true)
     private String username;
     private String password;
     private Boolean admin;
@@ -38,7 +38,7 @@ public class Account extends AbstractPersistable<Long> {
         this.password = password;
     }
 
-    public String getAdmin() {
+    public Boolean getAdmin() {
         return admin;
     }
 

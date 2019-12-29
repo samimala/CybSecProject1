@@ -4,14 +4,14 @@
         <title>Sign up form</title>
     </head>
     <body>
-
         <h1>Users</h1>
         <ul th:each="account : ${accounts}">
-            <li th:text="${account.username} + ' ' + ${account.password}"></li>
+            <li th:text="${account.username} + ' ' + ${account.password} + ' ' + ${account.admin}"></li>
         </ul>
         <form action="#" th:action="@{/newuser}" method="POST">
             <p><label for="username">Username</label>: <input type="text" name="username" id="username"/></p>
             <p><label for="password">Password</label>: <input type="text" name="password" id="password"/></p>
+            <p><label for="admin">Is admin</label>: <input type="checkbox" name="admin" id="admin"/></p>
             <p><input type="submit" value="Submit" /></p>
         </form>
 
