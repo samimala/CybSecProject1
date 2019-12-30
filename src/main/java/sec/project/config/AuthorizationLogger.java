@@ -10,11 +10,22 @@ import org.slf4j.LoggerFactory;
 
 @Component
 public class AuthorizationLogger { 
-    private static final Logger LOG = LoggerFactory.getLogger("security");
+    private static final Logger logger = LoggerFactory.getLogger("security");
 
     @EventListener
     public void onAuditEvent(AuditApplicationEvent event) {
         AuditEvent auditEvent = event.getAuditEvent();
-        LOG.info("typeprincipal={}", auditEvent.getType(), auditEvent.getPrincipal());
+        switch (auditEvent.getType()) {
+        case "AUTHENTICATION_FAILURE":
+            logger.warn("Authentication failed for " + auditEvent.getPrincipal());
+            break;
+        
+        case "AUTHENTICATION_SUCCESS":
+            logger.info(auditEvent.getPrincipal() + " logged in");
+            break;
+        default:
+            logger.info(auditEvent.getType() + ": " + auditEvent.getPrincipal());
+            break;
+        }
     }
 }

@@ -35,7 +35,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Account account=accountRepository.findByUsername(username);
         if (null==account) {
-            //logger.warn("Unknown user " + username + " tried to login");
+            logger.warn("Unknown user " + username + " tried to login");
             throw new UsernameNotFoundException("No such user: " + username);
         }
 
